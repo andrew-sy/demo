@@ -3,7 +3,7 @@ package sy.andrew.linkifier;
 import java.util.Arrays;
 import java.util.List;
 
-public class LinkifyProcessingQueueDemo2 {
+public class MultithreadDemo {
 
     private static class Producer implements Runnable {
         private final String name;

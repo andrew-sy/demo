@@ -1,6 +1,6 @@
 package sy.andrew.linkifier;
 
-public class LinkifyProcessingQueueDemo {
+public class SingleThreadDemo {
 
     /**
      * @param args
