@@ -29,12 +29,18 @@ Please be prepared to discuss how your solution could be scaled to accommodate v
 - thread safe implementation of the `LinkifyProcessingQueue` interface is based on `java.util.concurrent.ConcurrentLinkedQueue`
 - linkifying logic makes use of regex `https?://[-a-zA-Z0-9._~:/?#\\[\\]@!$&'()*+,;=%]+` which is explained in the notes below.
 
-### main() classes
+## Download, Build, Run
+- git clone this repo
+- `mvn clean package` (this also executes the junit tests)
+- `java -cp ./target/linkifier*.jar sy.andrew.linkifier.LinkifyProcessingQueueDemo`
+- `java -cp ./target/linkifier*.jar sy.andrew.linkifier.LinkifyProcessingQueueDemo2`
+
+#### The 2 main() classes
 - LinkifyProcessingQueueDemo is a single threaded demo that offers(inputText) and polls(). inputText and linkified result 
 are printed side-by-side for comparison. 
 - LinkifyProcessingQueueDemo2 is a multi-threaded demo with 2 producers and consumers sharing a single linkify queue. 
 
-### Notes About The Code:
+## Notes About The Solution:
 - I linkify not just `http://xxx` but also `https://xxx` (assuming of course the URL has not been linkified yet). 
 - The regex Pattern object I use in my code is set to be case insensitive, so a scheme like `HTTP://` or `HTTPS://` 
 (or `hTtP://` for that matter) will also be matched. 
@@ -69,7 +75,7 @@ And the regex would match the string below up till and including "b=2"
 HTTP://myexample.com/foo?a=1&b=2 is the answer. 
 ```
 
-### PERFORMANCE CONSIDERATIONS:
+## PERFORMANCE CONSIDERATIONS:
 
 - If the input text is large, the following can reduce memory requirements
   - Change the offer(String input) method to offer(InputStream input). So instead of keeping the entire input in memory, it can be read and processed in chunks of appropriate size. Similarly, rather than build the entire output text in memory, write the linkified output to persistent store as you process the input in chunks. 
