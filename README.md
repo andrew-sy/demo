@@ -32,13 +32,13 @@ Please be prepared to discuss how your solution could be scaled to accommodate v
 ## Download, Build, Run
 - git clone this repo
 - `mvn clean package` (this also executes the junit tests)
-- `java -cp ./target/linkifier*.jar sy.andrew.linkifier.LinkifyProcessingQueueDemo`
-- `java -cp ./target/linkifier*.jar sy.andrew.linkifier.LinkifyProcessingQueueDemo2`
+- `java -cp ./target/linkifier*.jar sy.andrew.linkifier.SingleThreadDemo`
+- `java -cp ./target/linkifier*.jar sy.andrew.linkifier.MultithreadDemo`
 
 #### The 2 main() classes
-- LinkifyProcessingQueueDemo is a single threaded demo that offers(inputText) and polls(). inputText and linkified result 
+- SingleThreadDemo is a single threaded demo that offers(inputText) and polls(). inputText and linkified result 
 are printed side-by-side for comparison. 
-- LinkifyProcessingQueueDemo2 is a multi-threaded demo with 2 producers and consumers sharing a single linkify queue. 
+- MultithreadDemo is a multi-threaded demo with 2 producers and consumers sharing a single linkify queue. 
 
 ## Notes About The Solution:
 - I linkify not just `http://xxx` but also `https://xxx` (assuming of course the URL has not been linkified yet). 
