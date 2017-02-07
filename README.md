@@ -19,21 +19,25 @@ from the head of the queue and return it; if no data is available, then poll() w
 FIFO queue, the first items in should also be the first items out.
 
 The Linkify transformation should find raw URLs prefixed with "http://" in the input text and convert them to HTML links, 
-for example http://www.example.com becomes <a href="http://www.example.com">www.example.com</a>. Any URLs that are already 
+for example `http://www.example.com` becomes `<a href="http://www.example.com">www.example.com</a>`. Any URLs that are already 
 within HTML links should not be modified.
 
 The solution should be thread-safe and include a unit test. Please include instructions on how to compile and test your project. 
 Please be prepared to discuss how your solution could be scaled to accommodate very large volumes of data.
 
 ## My Solution
+- thread safe implementation of the `LinkifyProcessingQueue` interface is based on `java.util.concurrent.ConcurrentLinkedQueue`
+- linkifying logic makes use of regex `https?://[-a-zA-Z0-9._~:/?#\\[\\]@!$&'()*+,;=%]+` which is explained in the notes below.
+
+### main() classes
 - LinkifyProcessingQueueDemo is a single threaded demo that offers(inputText) and polls(). inputText and linkified result 
 are printed side-by-side for comparison. 
 - LinkifyProcessingQueueDemo2 is a multi-threaded demo with 2 producers and consumers sharing a single linkify queue. 
 
 ### Notes About The Code:
-- I linkify not just http://xxx but also https://xxx (assuming of course the URL has not been linkified yet). 
-- The regex Pattern object I use in my code is set to be case insensitive, so a scheme like HTTP:// or HTTPS:// 
-(or hTtP:// for that matter) will also be matched. 
+- I linkify not just `http://xxx` but also `https://xxx` (assuming of course the URL has not been linkified yet). 
+- The regex Pattern object I use in my code is set to be case insensitive, so a scheme like `HTTP://` or `HTTPS://` 
+(or `hTtP://` for that matter) will also be matched. 
 - Re-linkifying a linkified text is of course idempotent. 
 - Any http or https URL contained within the opening and closing brackets of a tag is considered to be linkified already, 
 and will not be re-linkified. This applies not just to HTML anchor tags, such as `<a href="http://foo">`, but also to all 
@@ -55,7 +59,7 @@ To simplify the regex for the purpose of this exercise, I'm using the below rege
 https?://[-a-zA-Z0-9._~:/?#\\[\\]@!$&'()*+,;=%]+
 ```
 
-- It is also note worthing that any character that is not in the regex (such as the space character 0x20, the left angle bracket < and the double quote ") can be used to delimit the end of the URL. So for example, the regex would match the string below up till and including "#start(int)"
+- It is also note worthing that any character that is not in the regex (such as the space character `0x20`, the left angle bracket `<` and the double quote `")` can be used to delimit the end of the URL. So for example, the regex would match the string below up till and including `#start(int)`
 ```
 HTTP://docs.oracle.com/javase/6/docs/api/java/util/regex/Matcher.html#start(int)<div> 
 ```
