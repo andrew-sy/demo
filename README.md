@@ -1,6 +1,16 @@
 # demo_linkifier
 My solution to a coding assignment given by a previous (and now defunct) employer. 
 
+## TOC
+- [Problem Statement](#problem-statement)
+- [My Solution](#my-solution)
+- [Download, Build, Run](#download-build-run)
+- [Notes About The Solution](#notes-about-the-solution)
+- [PERFORMANCE CONSIDERATIONS](#performance-considerations)
+
+<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
+
+
 ## Problem Statement 
 As given by the employer. 
 
