@@ -1,4 +1,4 @@
- package sy.andrew.linkifier;
+ package sy.andrew.linkifier.util;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -11,7 +11,7 @@ import java.util.regex.Pattern;
  * @author asy
  * 
  */
-public class Linkifier {
+public class StringLinkifier {
 
     /**
      * Matches input string till first occurrence of one of the following is

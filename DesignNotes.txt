@@ -1,7 +1,6 @@
 Main Code Features
 - uses guava: great library (collections, etc.), cleaner code
 - fluent api?
-- TreeRangeSet queries is O(log n + k) time and O(n) space, where n is number of interval points and k is number of intervals returned ?
 - RangeSetUtil 
   - use of generics (template method)
   - 

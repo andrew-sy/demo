@@ -1,7 +1,7 @@
-package sy.andrew.linkifier;
+package sy.andrew.linkifier.processors;
 
 import java.util.PriorityQueue;
-import java.util.Queue;
+import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 import sy.andrew.linkifier.model.OrderedLinkifyObject;
@@ -23,19 +23,19 @@ import sy.andrew.linkifier.model.OrderedLinkifyObjectComparator;
  */
 public class SequentialOutputBuffer {
     private int sequenceNumberToWaitFor = 0;
-    private final ConcurrentLinkedQueue<OrderedLinkifyObject> finalOutputQueue; 
+    private final ArrayBlockingQueue<OrderedLinkifyObject> finalOutputQueue; 
     
     //access to this non-synchronized queue should be protected by using "this" as monitor
     private final PriorityQueue<OrderedLinkifyObject> holdingHeap = new PriorityQueue(200, new OrderedLinkifyObjectComparator());
     
     public static SequentialOutputBuffer create(int firstSequenceNumber, 
-            ConcurrentLinkedQueue<OrderedLinkifyObject> finalOutputQueue) {
+            ArrayBlockingQueue<OrderedLinkifyObject> finalOutputQueue) {
         //TODO: do we want to return singleton instead? 
         return new SequentialOutputBuffer(firstSequenceNumber, finalOutputQueue);
     }
 
     private SequentialOutputBuffer(int firstSequenceNumber, 
-            ConcurrentLinkedQueue<OrderedLinkifyObject> finalOutputQueue) {
+            ArrayBlockingQueue<OrderedLinkifyObject> finalOutputQueue) {
         this.sequenceNumberToWaitFor = firstSequenceNumber;
         this.finalOutputQueue = finalOutputQueue;
     }

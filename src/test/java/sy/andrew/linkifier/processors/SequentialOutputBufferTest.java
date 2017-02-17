@@ -1,8 +1,9 @@
-package sy.andrew.linkifier;
+package sy.andrew.linkifier.processors;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 import org.junit.Test;
@@ -14,7 +15,7 @@ public class SequentialOutputBufferTest {
     @Test
     public void givenInputOutOfOrder_shouldProduceOutputInOrder() {
         // ARRANGE
-        final ConcurrentLinkedQueue<OrderedLinkifyObject> outputQueue = new ConcurrentLinkedQueue<>();
+        final ArrayBlockingQueue<OrderedLinkifyObject> outputQueue = new ArrayBlockingQueue<>(100);
         SequentialOutputBuffer sut = SequentialOutputBuffer.create(1, outputQueue);
 
         // ACT
@@ -43,7 +44,7 @@ public class SequentialOutputBufferTest {
     @Test
     public void givenInputWithSkippedSequenceNumber_thenOutputShouldExcludeSequenceNumbersGreaterThanOrEqual() {
         // ARRANGE
-        final ConcurrentLinkedQueue<OrderedLinkifyObject> outputQueue = new ConcurrentLinkedQueue<>();
+        final ArrayBlockingQueue<OrderedLinkifyObject> outputQueue = new ArrayBlockingQueue<>(100);
         SequentialOutputBuffer sut = SequentialOutputBuffer.create(1, outputQueue);
 
         // ACT
@@ -61,16 +62,4 @@ public class SequentialOutputBufferTest {
         assertTrue("outputQueue should be empty.", outputQueue.isEmpty());        
     }
     
-    @Test
-    public void givenNoInput_thenOutputShouldBeEmpty() {
-        //ARRANGE 
-        final ConcurrentLinkedQueue<OrderedLinkifyObject> outputQueue = 
-                new ConcurrentLinkedQueue<>();
-        SequentialOutputBuffer sut = SequentialOutputBuffer.create(1, outputQueue);
-
-        //ACT - no inputs
-
-        //ASSERT
-        assertTrue("outputQueue should be empty.", outputQueue.isEmpty());        
-    }
 }
