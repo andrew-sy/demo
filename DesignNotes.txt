@@ -1,0 +1,11 @@
+Main Code Features
+- uses guava: great library (collections, etc.), cleaner code
+- fluent api?
+- RangeSetUtil 
+  - use of generics (template method)
+  - 
+
+
+Test Code Features
+- use hamcrest
+- use mock ? 
