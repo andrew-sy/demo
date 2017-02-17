@@ -1,4 +1,4 @@
-package sy.andrew.linkifier;
+ package sy.andrew.linkifier;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
