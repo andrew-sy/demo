@@ -31,7 +31,7 @@ public class OrderedLinkifyObjectComparatorTest {
         int actual = new OrderedLinkifyObjectComparator().compare(a, b);
         
         //ASSERT
-        assertEquals("Given a = b, ", actual, 1);
+        assertEquals("Given a > b, ", actual, 1);
     }
 
     @Test
@@ -44,7 +44,7 @@ public class OrderedLinkifyObjectComparatorTest {
         int actual = new OrderedLinkifyObjectComparator().compare(a, b);
         
         //ASSERT
-        assertEquals("Given a = b, ", actual, -1);
+        assertEquals("Given a < b, ", actual, -1);
     }
 }
 
