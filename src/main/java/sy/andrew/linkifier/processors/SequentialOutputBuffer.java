@@ -26,7 +26,7 @@ public class SequentialOutputBuffer {
     private final ArrayBlockingQueue<OrderedLinkifyObject> finalOutputQueue; 
     
     //access to this non-synchronized queue should be protected by using "this" as monitor
-    private final PriorityQueue<OrderedLinkifyObject> holdingHeap = new PriorityQueue(200, new OrderedLinkifyObjectComparator());
+    private final PriorityQueue<OrderedLinkifyObject> holdingHeap = new PriorityQueue<>(200, new OrderedLinkifyObjectComparator());
     
     public static SequentialOutputBuffer create(int firstSequenceNumber, 
             ArrayBlockingQueue<OrderedLinkifyObject> finalOutputQueue) {
